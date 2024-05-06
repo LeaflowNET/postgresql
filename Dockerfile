@@ -2,6 +2,8 @@ ARG PG_MAJOR=16
 FROM postgres:$PG_MAJOR
 ARG PG_MAJOR
 
+# Test connection
+RUN curl https://www.google.com
 
 # Base
 RUN mkdir -p /tmp/build && apt-get update && \
