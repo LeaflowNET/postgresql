@@ -30,7 +30,7 @@ RUN cd /tmp/build/timescaledb && git checkout . && git checkout 2.14.2 && ./boot
 
 # CLEAN
 RUN	rm -r /tmp/build && \
-		apt-get remove -y build-essential postgresql-server-dev-$PG_MAJOR && \
+		apt-get remove -y build-essential git postgresql-server-dev-$PG_MAJOR && \
 		apt-get autoremove -y && \
 		apt-mark unhold locales && \
 		rm -rf /var/lib/apt/lists/*
