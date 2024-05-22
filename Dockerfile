@@ -11,7 +11,7 @@ RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib 
 	rm -rf /etc/apt/sources.list.d/debian.sources && \
 	mkdir -p /tmp/build && apt-get update && \
 	apt-mark hold locales && \
-	apt-get install -y --no-install-recommends build-essential git cmake postgresql-server-dev-$PG_MAJOR
+	apt-get install -y --no-install-recommends build-essential cmake postgresql-server-dev-$PG_MAJOR
 		
 
 # PG VECTOR
@@ -26,7 +26,7 @@ RUN cd /tmp/build/pgvector && \
 
 # TIMESCALE
 COPY timescaledb /tmp/build/timescaledb
-RUN cd /tmp/build/timescaledb && git checkout . && git checkout 2.14.2 && ./bootstrap && cd build && make && make install
+RUN cd /tmp/build/timescaledb && ./bootstrap && cd build && make && make install
 
 # CLEAN
 RUN	rm -r /tmp/build && \
