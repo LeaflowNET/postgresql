@@ -1,12 +1,14 @@
 ARG PG_MAJOR=17
-FROM postgres:$PG_MAJOR
+FROM postgres:${PG_MAJOR}
+
+# re-declare ARG so it's available after FROM and export to environment
 ARG PG_MAJOR
+ENV PG_MAJOR=${PG_MAJOR}
 
+# 复制并执行安装脚本（脚本内部使用 apt-get 并根据 PG_MAJOR 自动调整）
+COPY setup.sh /setup.sh
+RUN chmod +x /setup.sh && /setup.sh && rm -f /setup.sh
 
-# why no apt
-RUN apt update && \
-	apt install -y postgresql-$PG_MAJOR-timescaledb postgresql-$PG_MAJOR-age postgresql-$PG_MAJOR-pgvector && \
-	rm -rf /var/lib/apt/lists/*
 
 # Base
 # RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
