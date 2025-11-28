@@ -15,6 +15,7 @@ packages=(
     "postgresql-${PG_MAJOR}-timescaledb"
     "postgresql-${PG_MAJOR}-age"
     "postgresql-${PG_MAJOR}-pgvector"
+    "timescaledb-toolkit-postgresql-${PG_MAJOR}"
 )
 
 # Install; if packages don't exist this will fail and print helpful debug info
